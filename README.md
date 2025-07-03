@@ -53,8 +53,12 @@ chestxray_cam_app/
 ├── models/
 │   ├── best_model.pth
 │   └── mlb_classes.pkl
+├── training/
+│   ├── train.py
+│   └── training_notebook.ipynb
 ├── requirements.txt
 └── README.md
+
 ```
 
 ---
@@ -64,8 +68,8 @@ chestxray_cam_app/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/chestxray-cam-app.git
-cd chestxray_cam_app
+git clone https://github.com/PatrickDdx/chest-xray-classification.git
+cd chest-xray-classification
 ```
 
 ### 2. Create a Virtual Environment
@@ -118,16 +122,29 @@ Update file paths in `streamlit_app.py` if your structure differs.
 
 ---
 
-## Deployment
+## Training the Model
 
-This app can be deployed on various platforms:
+The model was trained on the NIH ChestX-ray14 dataset using a fine-tuned ResNet-50 architecture.
 
-- [Streamlit Community Cloud](https://streamlit.io/cloud)
-- [Hugging Face Spaces](https://huggingface.co/spaces)
-- [Render](https://render.com/)
-- Self-hosted environments
+- [`training/train.py`](training/train.py): Standalone script for model training
+- [`training/training_notebook.ipynb`](training/training_notebook.ipynb): Jupyter notebook for exploratory development and visualization
 
-Feel free to open an issue for deployment help or optimization advice.
+Due to the dataset’s size and licensing, raw images are not included in this repository. You can download the ChestX-ray14 dataset from the [official NIH website](https://nihcc.app.box.com/v/ChestXray-NIHCC), then follow the instructions in the notebook to preprocess and train locally.
+
+Update dataset paths in the notebook or script as needed before training.
+
+Example training command:
+
+```bash
+python training/train.py \
+  --csv archive/Data_Entry_2017.csv \
+  --image_dir archive/all_images \
+  --epochs 30 \
+  --batch_size 32 \
+  --lr 1e-4 \
+  --workers 4 \
+  --patience 5 
+```
 
 ---
 
