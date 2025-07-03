@@ -10,13 +10,6 @@ Users can upload a chest X-ray image and:
 
 ---
 
-## UI
-
-![ui_1](app/assets/screenshot_1.png)
-![ui_2](app/assets/screenshot_2.png)
-
----
-
 ## 🔍 Example Output
 
 ![cam-grid-example](app/assets/example_image.png)
