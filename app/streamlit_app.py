@@ -3,7 +3,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
-
+import os
 from model_utils import load_model, predict_image, load_label_binarizer
 from transforms import preprocess_image
 from cam_utils import cam_img, denormalize
@@ -42,13 +42,39 @@ with st.spinner("Loading model..."): #spinner around the first call
     model, mlb = load_artifacts()
 label_names = mlb.classes_
 
-uploaded_file = st.file_uploader("Upload a chest X-ray image", type=["jpg", "jpeg", "png"])
 
-if uploaded_file:
-    image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded X-ray")  # display the uploaded image
+SAMPLE_IMAGE_DIR = "app/assets/sample_images"
+sample_images = sorted([f for f in os.listdir(SAMPLE_IMAGE_DIR) if f.lower().endswith(("png", "jpg", "jpeg"))])
 
-    if "gradcam_buffer" not in st.session_state or st.session_state.get("last_filename") != uploaded_file.name:
+option = st.radio(
+    "Choose an input method:",
+    ("Upload your own image", "Use a sample image"),
+    horizontal=True
+)
+
+image = None
+filename = None
+
+
+if option == "Upload your own image":
+    uploaded_file = st.file_uploader("Upload a chest X-ray image", type=["jpg", "jpeg", "png"])
+    if uploaded_file:
+        image = Image.open(uploaded_file).convert("RGB")
+        filename = uploaded_file.name
+        st.image(image, caption="Uploaded X-ray")
+
+elif option == "Use a sample image":
+    selected_sample = st.selectbox("Choose a sample image", sample_images)
+    image_path = os.path.join(SAMPLE_IMAGE_DIR, selected_sample)
+    image = Image.open(image_path).convert("RGB")
+    filename = selected_sample
+    st.image(image, caption=f"Sample Image: {selected_sample}")
+
+
+if image is not None:
+    run_button = st.button("Run Analysis")
+
+    if run_button:
 
         image_tensor = preprocess_image(image)
         predicted_labels, pred_proba = predict_image(model,image_tensor)
@@ -88,17 +114,16 @@ if uploaded_file:
 
         plt.tight_layout()
 
-        #st.pyplot(fig, use_container_width=True)
-
         # save figure to buffer
         buf = io.BytesIO()
         fig.savefig(buf, format="png", dpi=300, bbox_inches="tight")
         buf.seek(0)
 
         st.session_state.gradcam_buffer = buf
-        st.session_state.last_filename = uploaded_file.name
+        st.session_state.last_filename = filename
 
-
+# show results
+if "gradcam_buffer" in st.session_state:
     st.divider()
     st.subheader("Model Visual Explanation (Grad-CAM)")
     st.image(st.session_state.gradcam_buffer)
@@ -106,7 +131,7 @@ if uploaded_file:
     st.download_button(
         label="Download Image",
         data=st.session_state.gradcam_buffer,
-        file_name="grandcam_results.png",
+        file_name="gradcam_results.png",
         mime="image/png"
     )
 
