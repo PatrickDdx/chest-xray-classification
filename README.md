@@ -163,8 +163,10 @@ This application is intended for **educational and research purposes only**. It 
 
 ## Acknowledgments
 
-- NIH Clinical Center for the ChestX-ray14 dataset
-- Open-source contributors to PyTorch, Streamlit, and Grad-CAM libraries
+- **NIH Clinical Center** for the ChestX-ray14 dataset  
+  Sample chest X-ray images used in this project are from the [NIH ChestX-ray14 dataset](https://nihcc.app.box.com/v/ChestXray-NIHCC), provided by the U.S. National Library of Medicine and the National Institutes of Health Clinical Center.  
+  These images are included for **non-commercial, educational demonstration purposes only** and are **not** intended for clinical use.
+- Open-source contributors to **PyTorch**, **Streamlit**, and **Grad-CAM** libraries
 
 ---
 
