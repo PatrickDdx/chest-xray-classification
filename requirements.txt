@@ -7,3 +7,5 @@ numpy
 joblib
 grad-cam
 matplotlib
+opencv-python-headless
+pytorch-grad-cam
