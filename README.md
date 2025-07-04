@@ -1,6 +1,8 @@
 
 # Chest X-ray Diagnosis and Grad-CAM Visualizer
 
+🔗 **Try the App Online**: [chest-xray-classification-grad-cam.streamlit.app](https://chest-xray-classification-grad-cam.streamlit.app/)
+
 This project provides an interactive **Streamlit application** for visualizing deep learning predictions and **Grad-CAM heatmaps** on chest radiographs from the **NIH ChestX-ray14** dataset. A fine-tuned **ResNet-50** multi-label classifier is used to detect thoracic pathologies and highlight relevant image regions that contributed to each prediction.
 
 Users can upload a chest X-ray image and:
