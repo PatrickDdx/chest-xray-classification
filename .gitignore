@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-models/*.pth
-models/*.pkl
+#models/*.pth
+#models/*.pkl
 *.DS_Store
 .env
