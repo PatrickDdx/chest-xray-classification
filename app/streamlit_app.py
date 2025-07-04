@@ -49,7 +49,8 @@ sample_images = sorted([f for f in os.listdir(SAMPLE_IMAGE_DIR) if f.lower().end
 option = st.radio(
     "Choose an input method:",
     ("Upload your own image", "Use a sample image"),
-    horizontal=True
+    horizontal=True,
+    index=1
 )
 
 image = None
