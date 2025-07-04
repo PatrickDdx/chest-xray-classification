@@ -7,3 +7,6 @@ numpy
 joblib
 grad-cam
 matplotlib
+opencv-python-headless
+ttach
+scikit-learn
