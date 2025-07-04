@@ -10,7 +10,7 @@ Users can upload a chest X-ray image and:
 
 ---
 
-## 🔍 Example Output
+## Example Output
 
 ![cam-grid-example](app/assets/example_image.png)
 
