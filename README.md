@@ -10,6 +10,9 @@ Users can upload a chest X-ray image and:
 - View Grad-CAM explanations for each class
 - Interpret the model’s focus across a visual grid layout
 
+
+![A demo of the project's user interface](app/assets/ChestX-rayDiagnosisStreamlit.gif)
+
 ---
 
 ## Example Output
