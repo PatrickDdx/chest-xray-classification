@@ -178,3 +178,7 @@ This application is intended for **educational and research purposes only**. It 
 ## Feedback & Contributions
 
 Contributions, issues, and feedback are welcome. If you find the project useful, please consider starring ⭐ the repository or sharing it with others interested in medical AI and interpretability.
+
+---
+📫 Connect with me on [LinkedIn](https://www.linkedin.com/in/patrick-linke-905b16372)
+
